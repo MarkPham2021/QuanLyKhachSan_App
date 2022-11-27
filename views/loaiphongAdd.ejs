@@ -1,0 +1,59 @@
+
+<!doctype html>
+<html lang="vi">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>LoaiPhong_AddNew</title>
+  </head>
+  <body>    
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <br>
+                <h2 style="color: red;">Thêm Mới Loại Phòng</h2>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"><% include leftsidebar%></div>
+            <div class="col-lg-9">
+
+                 <form method="POST" action="/loaiphong/create">
+                    <div class="mb-3">
+                        <label for="LoaiPhongTen" class="form-label"> Tên Loại phòng:</label>
+                        <input type="text" class="form-control" name = "LoaiPhongTen" id="LoaiPhongTen" placeholder="Tên loại phòng,vd:Suite double seaview" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="LoaiPhongGia" class="form-label"> Giá phòng (VND/ngày):</label>
+                        <input type="number" class="form-control" name= "LoaiPhongGia" id="LoaiPhongGia" placeholder="Giá phòng: VND/Ngày">
+                    </div>
+                    <button class="btn btn-primary " type="submit">LƯU DỮ LIỆU </button> 
+                </form>
+                <br/>
+                    <a class="btn btn-success" href="/loaiphong" style="font-size: 100%;">Quay lại Danh mục Loại phòng</a>
+                <br/>
+                <br/>
+            </div>
+            
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+</div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+    
+  </body>
+</html>

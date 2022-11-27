@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="/javascripts/myjquery.js"></script>    
+    <title>phieuThuePhong_Create</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">Lập Phiếu Thuê Phòng</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9 container-fluid">
+                <form class="grid container-fluid" method="POST" action="/thuephong/create">
+                    <div class="row">
+                        <div class="input-group-text col-lg-12 mb-1">
+                            <span class="input-group-text">Chọn phòng:</span>
+                            <input class="form-control" list="danhsachPhong" name="Phong" id="Phong"
+                                placeholder="Type to search...">
+                            <datalist id="danhsachPhong">
+                                <% for(let i=0; i<phong.length; i++){ %>
+                                    <option value="<%- phong[i].PhongID + '|' + phong[i].PhongSo + '|' + phong[i].LoaiPhongTen + '|BasePrice: ' + phong[i].LoaiPhongGia %>">
+                                        <%= phong[i].PhongID %> - <%= phong[i].PhongSo %> - <%= phong[i].LoaiPhongTen %> - <%= phong[i].LoaiPhongGia %>
+                                    </option>
+                                    <% } %>
+                            </datalist>
+                        </div>                        
+                    </div>
+                    <div class="row">                        
+                        <div class="input-group-text col-lg-6 mb-1">
+                            <% let d=new Date(); let mm=d.getMonth() +1; if (mm.toString().length <2){mm='0' + mm}; let dd=d.getDate(); if
+                                (dd.toString().length <2){dd='0' + dd}; let _d=d.getFullYear() + '-' + mm + '-' + dd; %>
+                                <span class="input-group-text">Ngày thuê:</span>
+                                <input type="date" class="form-control" name="NgayThue" id="NgayThue" required value="<%- _d %>">
+                        </div>
+                        <div class="input-group-text col-lg-6 mb-1">
+                            <span class="input-group-text">Ngày trả dự kiến:</span>
+                            <input type="date" class="form-control" name="NgayTraDuKien" id="NgayTraDuKien" >                               
+                        </div>
+                        <input type="hidden" class="form-control" name="isActive" id="isActive" value="1">
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-4 my-3 d-block bg-primary text-white px-5">
+                            <label class="pull-center" style="font-weight: bolder;">Nhập thông tin khách lưu trú:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-12 mb-1">
+                            <span class="input-group-text">Chọn khách hàng:</span>
+                            <input class="form-control" list="danhsachKhachHang" name="khachhang" id="khachhang" placeholder="Type to search...">
+                            <datalist id="danhsachKhachHang">
+                                <% for(let i=0; i<khachhang.length; i++){ %>
+                                    <option
+                                        value="<%- khachhang[i].CaNhanID + '|' + khachhang[i].CaNhanTen + '|' + khachhang[i].LoaiKhachTen +'|Loại GTCN: ' + khachhang[i].TenGTCN + '|' + khachhang[i].GTCNSo + '|' + khachhang[i].DiaChi %>">
+                                        <%= khachhang[i].CaNhanID+'|' + khachhang[i].CaNhanTen + '|' + khachhang[i].LoaiKhachTen +'|Loại GTCN: ' + khachhang[i].TenGTCN + '|' + khachhang[i].GTCNSo + '|' + khachhang[i].DiaChi %> 
+                                    </option>
+                                    <% } %>
+                            </datalist>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1 my-3">
+                            <span>&nbsp;&nbsp;</span>
+                        </div>
+                        <div class="input-group-text col-lg-4 my-3 d-block bg-primary text-white">
+                            <button class="btn btn-primary" type="button" id="btnAdd" style="font-weight: bolder;">Thêm Khách hàng được chọn</button>
+                        </div>
+                        <div class="col-lg-2 my-3">
+                            <span>&nbsp;&nbsp;</span>
+                        </div>
+                        <div class="input-group-text col-lg-4 my-3 d-block bg-danger text-white">
+                            <button class="btn btn-danger" type="button" id="btnDel" style="font-weight: bolder;">Xóa Khách hàng vừa nhập</button>
+                        </div>
+                    </div>
+                                        
+                    <div class="row" id="secCuoi">                        
+                        <div class="input-group-text col-lg-7 mb-3">
+                            <span class="input-group-text" style="font-weight: bolder;">Tổng số khách lưu trú:</span>
+                            <input type="number" class="form-control" name="tongsoKhach" id="tongsoKhach" readonly style="color: blue; text-align: right;font-weight: bold; background-color: azure;">                               
+                        </div>
+                        <div class="input-group-text col-lg-5 mb-3">
+                            <span class="input-group-text" style="font-weight: bolder;">Tổng số khách lưu trú tối đa:</span>
+                            <input type="number" class="form-control" name="tongsoKhachMax" id="tongsoKhachMax" value="<%- chinhsach.SoKhachLuuTruToiDa %>" readonly style="color: rgb(136, 9, 9); text-align: right;font-weight: bold; background-color: azure;">                               
+                        </div>
+                    </div>
+                    <input type="hidden" name="ChinhSachID" value="<%- chinhsach.ChinhSachID %>" readonly>
+                    <div class="btn-group" role="group" >
+                        <button class="btn btn-primary " type="submit" id="nutCuoi"> LẬP PHIẾU THUÊ PHÒNG </button>
+                        <button class="btn btn-info " type="reset"> Reset </button>
+                        <a class="btn btn-success" href="/thuephong" style="font-size: 100%;">Quay lại Danh sách Phiếu Thuê Phòng</a>
+                    </div>
+                </form>
+                <br />                
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+
+</html>

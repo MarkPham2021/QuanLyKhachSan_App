@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>ChinhSach_Update</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">Thay đổi Nội dung Chính Sách</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <form class="grid" method="POST" action="/chinhsach/update/<%- chinhsach.ChinhSachID %>">
+                    <div class="row">
+                        <div class="input-group-text col-lg-4 mb-3">
+                            <span class="input-group-text" >Chính sách số:</span>
+                            <input type="number" class="form-control" name="ChinhSachID" readonly value="<%- chinhsach.ChinhSachID %>">                                
+                        </div>
+                        <div class="input-group-text col-lg-8 mb-3">                            
+                            <span class="input-group-text" id="inputGroup-text">Tình trạng hiệu lực:</span>
+                            <select type="text" class="form-control" name="HieuLuc" required >
+                                <option value="<%- chinhsach.HieuLuc %>"><%= chinhsach.TH_HieuLuc %></option>
+                                <option value="1" >Đang Áp dụng</option>
+                                <option value="0">Hết Hiệu lực</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-6 mb-3">
+                            <span class="input-group-text">Ngày bắt đầu hiệu lực:</span>
+                            <input type="date" class="form-control" name="NgayHieuLuc" value="<%- chinhsach.NgayHieuLuc %>">
+                        </div>
+                        <div class="input-group-text col-lg-6 mb-3">
+                            <span class="input-group-text">Ngày hết hiệu lực:</span>
+                            <input type="date" class="form-control" name="NgayHetHieuLuc" value="<%- chinhsach.NgayHetHieuLuc %>">
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="input-group-text col-lg-7 mb-3">
+                            <span class="input-group-text" >Số khách được lưu trú tối đa 1 phòng:</span>
+                            <input type="number" class="form-control" name="SoKhachLuuTruToiDa" value="<%- chinhsach.SoKhachLuuTruToiDa %>" >                                
+                        </div>
+                        <div class="input-group-text col-lg-5 mb-3">
+                            <span class="input-group-text" id="inputGroup-text">Tỷ lệ phụ thu:</span>
+                            <input type="text" class="form-control" name="TyLePhuThu" value="<%- chinhsach.TyLePhuThu %>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-6 mb-3">
+                            <span class="input-group-text" >Hệ số giá khách trong nước:</span>
+                            <input type="text" class="form-control" name="HeSoGiaKhachTrongNuoc" value="<%- chinhsach.HeSoGiaKhachTrongNuoc %>">                                
+                        </div>
+                        <div class="input-group-text col-lg-6 mb-3">
+                            <span class="input-group-text" id="inputGroup-text">Hệ số giá khách nước ngoài:</span>
+                            <input type="text" class="form-control" name="HeSoGiaKhachNuocNgoai" value="<%- chinhsach.HeSoGiaKhachNuocNgoai %>">
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary " type="submit"> Lưu Dữ Liệu </button>
+                        <button class="btn btn-info " type="reset"> Reset </button>
+                    </div>
+                </form>
+                <br />
+                <a class="btn btn-success" href="/chinhsach" style="font-size: 100%;">Quay lại Danh sách Chính sách</a>
+                <br />
+                <br />
+            </div>
+
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

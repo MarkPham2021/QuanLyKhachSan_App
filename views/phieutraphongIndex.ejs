@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>PhieuTraPhong_Index</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">Danh Sách Hóa đơn Thanh Toán</h2>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr width="100%" style="text-align: center; padding-left: 0px;padding-right: 0px;">
+                            <th width="7%">STT</th>
+                            <th width="7%">Số Phiếu</th>
+                            <th width="10%">Phòng số</th>
+                            <th width="12%">Ngày Thuê</th>
+                            <th width="12%">Ngày Trả </th>
+                            <th width="9%">Số Ngày</th>
+                            <th width="14%">Đơn giá</th>
+                            <th width="17%">Thành tiền</th>
+                            <th colspan="3" width="12%"> Hành động </th>
+                        </tr>
+                    </thead>
+
+                    <% for (let i=0; i<danhsach.length; i++) { %>
+                        <tr width="100%">
+                            <td width="7%" style="text-align: right;">
+                                <%=i +1 %>
+                            </td>
+                            <td width="7%" style="text-align: right;">
+                                <%=danhsach[i].PhieuTraID %>
+                            </td>
+                            <td width="10%">
+                                <%=danhsach[i].PhongSo%>
+                            </td>
+                            <td width="12%">
+                                <%=danhsach[i].NgayThue%>
+                            </td>
+                            <td width="12%">
+                                <%=danhsach[i].NgayTra %>
+                            </td>
+                            <td width="9%" style="text-align: right;">
+                                <%=danhsach[i].SoNgayThue %>
+                            </td>
+                            <td width="14%" style="text-align: center;">
+                                <%=danhsach[i].DonGiaThanhToan %>
+                            </td>
+                            <td width="17%" style="text-align: center;">
+                                <%=danhsach[i].ThanhTien %>
+                            </td>
+                            <td width="6%"><a href="/traphong/detail/<%- danhsach[i].PhieuTraID %>">Xem</a> </td>
+                            <td width="6%">
+                                <a href="/traphong/delete/<%- danhsach[i].PhieuTraID %>"
+                                    style="color: red;">Xóa
+                                </a> 
+                            </td>
+                            
+                        </tr>
+                        <% } %>
+                </table>
+            </div>
+
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

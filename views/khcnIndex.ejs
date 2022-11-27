@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>KhachHang_Index</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">Danh Sách Khách Hàng</h2>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-primary" href="/khcn/create" style="font-size: 120%;">Thêm mới</a>
+                    <a class="btn btn-info" href="/khcn/search" style="font-size: 120%;">Tìm kiếm</a>                    
+                </div>
+                <br />
+
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr width="100%">
+                            <th width="6%">STT</th>
+                            <th width="6%">ID</th>
+                            <th width="25%">Họ và tên</th>
+                            <th width="7%">GTCN</th>
+                            <th width="9%">GTCN số</th>
+                            <th width="6%">Quốc tịch</th>
+                            <th width="7%">Giới tính</th>
+                            <th width="11%">Ngày sinh</th>
+                            <th width="8%">Điện thoại</th>
+                            <th colspan="3" width="15%"> Hành động </th>
+                        </tr>
+                    </thead>
+
+                    <% for (let i=0; i<danhsach.length; i++) { %>
+                        <tr width="100%">
+                            <td width="6%">
+                                <%=i +1 %>
+                            </td>
+                            <td width="6%">
+                                <%=danhsach[i].CaNhanID %>
+                            </td>
+                            <td width="25%">
+                                <%=danhsach[i].CaNhanTen%>
+                            </td>
+                            <td width="7%">
+                                <%=danhsach[i].TenGTCN%>
+                            </td>
+                            <td width="9%" style="text-align: right;">
+                                <%=danhsach[i].GTCNSo %>
+                            </td>
+                            <td width="6%">
+                                <%=danhsach[i].QuocTich %>
+                            </td>
+                            <td width="7%">
+                                <%=danhsach[i].GioiTinh %>
+                            </td>
+                            <td width="11%" style="text-align: right;">
+                                <%=danhsach[i].NgaySinh %>
+                            </td>
+                            <td width="8%" style="text-align: right;">
+                                <%=danhsach[i].DienThoai %>
+                            </td>
+                            <td width="5%"><a href="/khcn/detail/<%- danhsach[i].CaNhanID %>">Xem</a> </td>
+                            <td width="5%"><a href="/khcn/update/<%- danhsach[i].CaNhanID %>">Sửa</a> </td>
+                            <td width="5%"><a href="/khcn/delete/<%- danhsach[i].CaNhanID %>">Xóa</a> </td>
+                        </tr>
+                        <% } %>
+                </table>
+            </div>
+
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="/javascripts/myjquery.js"></script>    
+    <title>phieuThuePhong_Save</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">Xác nhận Thông tin Phiếu Thuê Phòng</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <form class="grid" method="POST" action="/thuephong/save">
+                    <div class="row">
+                        <div class="input-group-text col mb-1">
+                            <span class="input-group-text">Phòng:&nbsp;</span>
+                            <input class="form-control" list="danhsachPhong" name="Phong" id="Phong" value="<%- phieuthue.phong %>" readonly>                                
+                            <input type="hidden" class="form-control" name="isActive" id="isActive" value="1" readonly>
+                        </div>                 
+                    </div>
+                    <div class="row">                        
+                        <div class="input-group-text col-lg-6 mb-2">                            
+                            <span class="input-group-text">Ngày thuê:</span>
+                            <input type="date" class="form-control" name="NgayThue" id="NgayThue" readonly value="<%- phieuthue.ngaythue %>">                               
+                        </div>
+                        <div class="input-group-text col-lg-6 mb-2">
+                            <span class="input-group-text">Ngày trả dự kiến:</span>
+                            <input type="date" class="form-control" name="NgayTraDuKien" id="NgayTraDuKien" readonly value="<%- phieuthue.ngaytradukien %>" >                               
+                        </div>
+                        <input type="hidden" name="ChinhSachID" value="<%- phieuthue.ChinhSachID %>" readonly>
+                    </div>
+                    <div class="row">                        
+                        <div class="input-group-text col-lg-4 mb-3"style="padding-left: 55px; padding-right: 0px;">
+                            <label class="pull-center" style="text-align: center; background-color: cornflowerblue; font-weight: bolder; font-size: 120%;" >Thông tin khách lưu trú:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-1 mb-1"style="padding-left: 0px; padding-right: 0px;">                            
+                            <label style="text-align: center;font-weight: bolder;padding-left: 10px;margin-left: 10px;margin-right: 0px;" >STT</label>
+                        </div>
+                        <div class="input-group-text col-lg-1 mb-1"style="padding-left: 0px; padding-right: 0px;">
+                            <label style="text-align: center;font-weight: bolder;padding-left: 15px;margin-left: 10px;margin-right: 0px;" >ID</label>                            
+                        </div>
+                        <div class="input-group-text col-lg-3 mb-1"style="padding-left: 0px; padding-right: 0px;">
+                            <label style="text-align: center;font-weight: bolder;padding-left: 10px;margin-left: 10px;margin-right: 0px;" >Họ tên</label>                            
+                        </div>
+                        <div class="input-group-text col-lg-1 mb-1" style="padding-left: 0px; padding-right: 0px;">
+                            <label style="text-align: center;font-weight: bolder;padding-left: 10px;margin-left: 10px;margin-right: 0px;" >GTCN</label>                            
+                        </div>
+                        <div class="input-group-text col-lg-2 mb-1"style="padding-left: 0px; padding-right: 0px;">
+                            <label style="text-align: center;font-weight: bolder;padding-left: 10px;margin-left: 10px;margin-right: 0px;">GTCN  Số</label>                            
+                        </div>
+                        <div class="input-group-text col-lg-2 mb-1" style="padding-left: 0px; padding-right: 0px;">
+                            <label style="text-align: center;font-weight: bolder;padding-left: 10px;margin-left: 10px;margin-right: 0px;" >Địa chỉ</label>                            
+                        </div>
+                        <div class="input-group-text col-lg-2 mb-1"style="padding-left: 0px; padding-right: 0px;">
+                            <label style="text-align: center;font-weight: bolder;padding-left: 10px;margin-left: 10px;margin-right: 0px;" >Điện thoại</label>                            
+                        </div>
+                    </div>
+                    <% for (let i=0; i<phieuthue.tongsokhach; i++) {if(typeof(khachs[i])!='undefined'){ %>
+                        <div class="row">
+                            <div class="input-group-text col-lg-1 col-sm-12 mb-1 px-0 mx-0">
+                                <input type="number" class="form-control px-0 mx-0 text-end" name="STT" id="STT" readonly value="<%- phieuthue.STT[i] %>" style="font-size: 86%; " >
+                            </div>
+                            <div class="input-group-text col-lg-1 mb-1 px-0">
+                                <input type="number" class="form-control text-end" name="CaNhanID" id="CaNhanID" readonly value="<%- khachs[i].CaNhanID %>" style="font-size: 86%; ">
+                            </div>
+                            <div class="input-group-text col-lg-3 mb-1 px-0">
+                                <input type="text" class="form-control text-start" name="CaNhanTen" id="CaNhanTen" readonly value="<%- khachs[i].CaNhanTen %>" style="font-size: 86%; ">
+                            </div>
+                            <div class="input-group-text col-lg-1 mb-1 px-0">
+                                <input type="text" class="form-control text-start" name="TenGTCN" id="TenGTCN" readonly value="<%- khachs[i].TenGTCN %>" style="font-size: 86%; ">
+                            </div>
+                            <div class="input-group-text col-lg-2 mb-1 px-0">
+                                <input type="text" class="form-control text-end" name="GTCNSo" id="GTCNSo" readonly value="<%- khachs[i].GTCNSo %>" style="font-size: 86%; ">
+                            </div>
+                            <div class="input-group-text col-lg-2 mb-1 px-0">
+                                <input type="text" class="form-control text-start" name="DiaChi" id="DiaChi" readonly value="<%- khachs[i].DiaChi %>" style="font-size: 86%; ">
+                            </div>
+                            <div class="input-group-text col-lg-2 mb-1 px-0">
+                                <input type="text" class="form-control text-start" name="DienThoai" id="DienThoai" readonly value="<%- khachs[i].DienThoai %>" style="font-size: 86%; ">
+                            </div>
+                        </div>
+                        <% } else { %>
+                            <div class="row">
+                                <div class="input-group-text col-lg-12 mb-3">
+                                    <input type="text" class="form-control" name="Thongbao" readonly value="Mã khách hàng không tồn tại, xin mời Quay lại bước lập phiếu để Điều chỉnh dữ liệu." style="color: red;font-weight: bolder;">
+                                </div>
+                            </div>  
+                            <% } %>
+                    <% } %>                    
+                    <div class="row" id="secCuoi">                        
+                        <div class="input-group-text col-lg-4 mb-1" style="padding-left: 0px; padding-right: 0px;">
+                            <span class="input-group-text" style="font-weight: bolder;">Tổng số khách lưu trú:</span>
+                            <input type="number" class="form-control" name="tongsoKhach" id="tongsoKhach" value="<%- phieuthue.tongsokhach %>" readonly style="color: blue; text-align: right;font-weight: bold; background-color: azure;">                               
+                        </div>
+                        <div class="input-group-text col-lg-4 mb-1"style="padding-left: 0px; padding-right: 0px;">
+                            <span class="input-group-text" style="font-weight: bolder;">Số khách được lưu trú tối đa:</span>
+                            <input type="number" class="form-control" name="tongsoKhachMax" id="tongsoKhachMax" value="<%- phieuthue.tongsokhachmax %>" readonly style="color: rgb(136, 9, 9); text-align: right;font-weight: bold; background-color: azure;">                               
+                        </div>
+                        <div class="input-group-text col-lg-4 mb-1" style="padding-left: 0px; padding-right: 0px;">
+                            <% let hfr = "No"; for(let i = 0; i<phieuthue.tongsokhach; i++){if(typeof(khachs[i])!='undefined' && !khachs[i].LoaiKhachID){hfr = "Yes"; break;}} %>
+                            <span class="input-group-text" style="font-weight: bolder;">Có khách nước ngoài:</span>
+                            <input type="text" class="form-control" name="hasForeigner" id="hasForeigner" value="<%- hfr %>" readonly style="color: blue; text-align: left;;font-weight: bold; background-color: azure;">                               
+                        </div>                        
+                    </div>
+                    <div class="row" >
+                        <div class="input-group-text col-lg-4 mb-1" style="padding-left: 0px; padding-right: 0px;">
+                            <span class="input-group-text" style="font-weight: bolder;">Hệ số giá áp dụng (%):</span>
+                            <input type="number" class="form-control text-end" name="HeSoGia" id="HeSoGia" value="<%- phieuthue.HeSoGia %>"
+                                readonly style="color: blue; text-align: right;font-weight: bold; background-color: azure;">
+                        </div>
+                        <div class="input-group-text col-lg-3 mb-1" style="padding-left: 0px; padding-right: 0px;">
+                            <span class="input-group-text" style="font-weight: bolder;">Tỷ lệ phụ thu (%):</span>
+                            <input type="text" class="form-control text-end" name="TyLePhuThu" id="TyLePhuThu"
+                                value="<%- phieuthue.TyLePhuThu %>" readonly
+                                style="color: blue; font-weight: bold; background-color: azure;">
+                        </div>
+                        <div class="input-group-text col-lg-5 mb-1" style="padding-left: 0px; padding-right: 0px;">
+                            <span class="input-group-text" style="font-weight: bolder;">Đơn giá cho thuê (VND/ngày):</span>
+                            <input type="number" class="form-control" name="DonGiaThanhToan" id="DonGiaThanhToan" value="<%- phieuthue.DonGiaThanhToan %>"
+                                readonly style="color: blue; text-align: right;font-weight: bold; background-color: azure;">
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group" >
+                        <button class="btn btn-primary " type="submit" id="nutCuoi"> LƯU DỮ LIỆU </button>                        
+                        <button class="btn btn-warning" type="button" onclick="quay_lai_trang_truoc()" style="font-size: 100%;">Quay lại Lập Phiếu Thuê Phòng</a>
+                    </div>
+                </form>                                
+                <br />
+            </div>
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>KhachHang_Search</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">Tìm Kiếm Khách hàng</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <form class="grid" method="POST" action="/khcn/search">
+                    <div class="row">
+                        <div class="input-group-text col-lg-2 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text" >ID:</span>
+                            <input type="number" class="form-control" name="CaNhanID" id="CaNhanID" placeholder="ID">                                
+                        </div>
+                        <div class="input-group-text col-lg-7 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text" >Tên khách hàng:</span>
+                            <input type="text" class="form-control" name="CaNhanTen" id="CaNhanTen" placeholder="Họ và tên, vd: Nguyễn Văn A">                                
+                        </div>
+                        <div class="input-group-text col-lg-3 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Điện thoại:</span>
+                            <input type="text" class="form-control" name="DienThoai" id="DienThoai"
+                                placeholder="Số điện thoại">
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-6 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Loại giấy tờ:</span>
+                            <select type="text" class="form-control" name="LoaiGTCNID" id="LoaiGTCNID">
+                                <option value="">Chọn ...</option>
+                                <option value="1">Giấy CMND</option>
+                                <option value="2">Căn cước Công dân</option>
+                                <option value="3">Hộ chiếu</option>
+                                <option value="4">Giấy ĐKKD</option>
+                                <option value="5">QĐ Thành lập</option>
+                            </select>
+                        </div>
+                        <div class="input-group-text col-lg-6 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Giấy tờ số:</span>
+                            <input type="text" class="form-control" name="GiayToCNSo" id="GiayToCNSo" placeholder="Số của GTCN, vd: 0025123789">                                
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary " type="submit"> Tìm kiếm </button>
+                        <button class="btn btn-info " type="reset"> Reset </button>
+                    </div>
+                </form>
+                <br />
+                <a class="btn btn-success" href="/khcn" style="font-size: 100%;">Quay lại Danh sách khách hàng </a>
+                <br />
+            </div>
+
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

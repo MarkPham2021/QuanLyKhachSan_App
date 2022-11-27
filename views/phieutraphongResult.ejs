@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>PhieuTraPhong_Result</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <br>
+                <h2 style="color: red;">Hóa đơn thanh toán_Kết Quả Xử Lý</h2>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <% let k="Không thành công" ; let err="" ; %>
+                    <% let s="style = 'color: darkred' " ;%>
+                        <% let h="Bạn đã " + thaotac.ten;%>
+                            <% if(ketqua.status!=200){err=ketqua.summary[0]; } ; %>
+
+                                <% if(ketqua.status==200){k="Thành công" ; s="style = 'color: #009900'" } %>
+
+                                    <p class="text-lg-start fs-3" <%- s %>><%= h %> :</p>
+                                    <p class="text-lg-start fs-3" <%- s %>><%=k %>
+                                    </p>
+                                    <div class="alert alert-danger" role="alert" <%- s %>><%= err %>
+                                    </div>
+                                    <a class="btn btn-success" href="/traphong" style="font-size: 100%;">Quay lại Danh
+                                        sách Hóa đơn </a>
+            </div>
+            <div class="row">
+                <% include footer%>
+            </div>
+        </div>
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>

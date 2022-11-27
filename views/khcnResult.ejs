@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>KhachHang_Result</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <br>
+                <h2 style="color: red;">Khách hàng_Kết Quả Xử Lý</h2>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <% let k="Không thành công" ; let err="" ; %>
+                    <% let s="style = 'color: darkred' " ;%>
+                        <% let h="Bạn đã " + thaotac.ten;%>
+                            <% if(ketqua.status!=200){err="errorCode: " + ketqua.error.code +" message: " + ketqua.error.message; } ; %>
+
+                                <% if(ketqua.status == 200){k="Thành công" ; s="style = 'color: #009900'" } %>
+
+                                    <p class="text-xxl-start fs-3" <%- s %>><%= h %> :</p>
+                                    <p class="text-xxl-start fs-3" <%- s %>><%=k %>
+                                    </p>
+                                    <div class="alert alert-danger" role="alert" <%- s %>><%= err %>
+                                    </div>
+                                    <a class="btn btn-primary" href="/khcn" style="font-size: 100%;">Quay lại Danh sách
+                                        Khách hàng Cá nhân</a>
+            </div>
+            <div class="row">
+                <% include footer%>
+            </div>
+        </div>
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

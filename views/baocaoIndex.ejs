@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>BaoCao_Index</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">TẠO BÁO CÁO</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <form class="grid" method="POST" action="/baocao/create">
+                    <div class="row">                        
+                        <div class="input-group-text col mb-3" >
+                            <span class="input-group-text text-start" id="inputGroup-text">Chọn loại báo cáo cần tạo:</span>
+                            <select type="number" class="form-control" name="LoaiBaoCao" id="LoaiBaoCao">
+                                <option value="1">Báo cáo doanh thu theo loại phòng</option>
+                                <option value="2">Báo cáo mật độ sử dụng phòng</option>
+                            </select>
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div class="input-group-text col-lg-6 mb-3" >
+                            <span class="input-group-text">Từ ngày:</span>
+                            <input type="date" class="form-control" name="Ngaybatdau" id="Ngaybatdau" required>
+                        </div>
+                        
+                        <div class="input-group-text col-lg-6 mb-3" >
+                            <span class="input-group-text">đến ngày:</span>
+                            <input type="date" class="form-control" name="Ngayketthuc" id="Ngayketthuc" required>
+                        </div>
+                    </div>                    
+
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary " type="submit"> Tạo báo cáo </button>
+                    </div>
+                </form>
+                <br />
+            </div>
+
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>KhachHang_Detail</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">Xem Thông tin Chi tiết Khách hàng</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <form class="grid" >
+                    <div class="row">
+                        <div class="input-group-text col-lg-2 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text" >ID:</span>
+                            <input type="text" class="form-control" name="CaNhanID" id="CaNhanID" value="<%-khcn.CaNhanID %>" readonly>                                
+                        </div>
+                        <div class="input-group-text col-lg-7 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text" >Tên Khách hàng:</span>
+                            <input type="text" class="form-control" name="CaNhanTen" id="CaNhanTen" value="<%-khcn.CaNhanTen %>" readonly>                                
+                        </div>
+                        <div class="input-group-text col-lg-3 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text" id="inputGroup-text">Giới tính:</span>
+                            <% let _gioitinh = "Nữ"; if(khcn.GioiTinh == 1) { _gioitinh = "Nam";} else if(khcn.GioiTinh > 1) { _gioitinh = "None";} %>
+                            <input type="text" class="form-control" name="GioiTinh" id="GioiTinh" value="<%- _gioitinh %>" readonly>                             
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-6 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Loại giấy tờ:</span>
+                            <input type="text" class="form-control" name="LoaiGTCNID" id="LoaiGTCNID" value="<%-khcn.TenGTCN %>" readonly>                                
+                        </div>
+                        <div class="input-group-text col-lg-6 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Giấy tờ số:</span>
+                            <input type="text" class="form-control" name="GiayToCNSo" id="GiayToCNSo" value="<%-khcn.GTCNSo %>" readonly>                                
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div class="input-group-text col-lg-4 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Ngày sinh/thành lập:</span>
+                            <input type="text" class="form-control" name="NgaySinh" id="NgaySinh" value="<%- khcn.NgaySinh %>" readonly>
+                        </div>
+                        <div class="input-group-text col-lg-4 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Loại khách:</span>
+                            <input type="text" class="form-control" name="LoaiKhachID" id="LoaiKhachID" value="<%-khcn.LoaiKhachTen %>" readonly>                                
+                        </div>
+                        <div class="input-group-text col-lg-4 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Quốc tịch:</span>
+                            <input class="form-control" type="text" name="QuocTich" id="QuocTich"  value="<%-khcn.QuocGia %>" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-12 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Địa chỉ:</span>
+                            <input type="text" class="form-control" name="DiaChi" id="DiaChi" value="<%-khcn.DiaChi %>" readonly>                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-5 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Điện thoại:</span>
+                            <input type="text" class="form-control" name="DienThoai" id="DienThoai"
+                            value="<%-khcn.DienThoai %>" readonly>
+                        </div>
+                        <div class="input-group-text col-lg-7 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Email:</span>
+                            <input type="email" class="form-control" name="Email" id="Email"
+                            value="<%-khcn.Email %>" readonly>
+                        </div>
+                    </div>
+                   
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-warning " href="/khcn/update/<%- khcn.CaNhanID %>"> Sửa </a>
+                        <a class="btn btn-danger " href="/khcn/delete/<%- khcn.CaNhanID %>"> Xóa </a>
+                    </div>
+                </form>
+                <br />
+                <a class="btn btn-success" href="/khcn" style="font-size: 100%;">Quay lại Danh sách khách hàng </a>
+                <br />
+                <br />
+            </div>
+
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

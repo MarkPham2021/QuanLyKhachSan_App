@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/javascripts/myjquery.js"></script>
+    <title>Phong_Delete</title>
+  </head>
+  <body>    
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <br>
+                <h2 style="color: red;">Xóa Phòng</h2>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"><% include leftsidebar%></div>
+            <div class="col-lg-9">
+
+                 <form class="grid" method="POST" action="/phong/delete/<%- phong.PhongID %>">
+                    <div class="row">
+                        <div class="input-group-text col-lg-3 mb-3">
+                            <span class="input-group-text">Phòng ID:</span>
+                            <input type="number" class="form-control" name = "PhongID" id="PhongID" disabled ="true" value="<%- phong.PhongID %>">
+                        </div>
+                        <div class="input-group-text col-lg-3 mb-3">
+                            <span class="input-group-text">Phòng Số:</span>
+                            <input type="text" class="form-control" name = "PhongSo" id="PhongSo" disabled ="true" value="<%- phong.PhongSo %>">
+                        </div>         
+                        <div class="input-group-text col-lg-6 mb-3">
+                            <span class="input-group-text">Loại phòng:</span>
+                            <input type="text" class="form-control" name = "LoaiPhongID" id="LoaiPhongID" disabled ="true" value="<%- phong.LoaiPhongTen %>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <% let _tt = "Occupied"; if(phong.TinhTrang){_tt = "Available"}; %>
+                        <div class="input-group-text col-lg-5 mb-3">
+                            <span class="input-group-text"> Khu vực:</span>
+                            <input type="text" class="form-control" name = "KhuVuc" id="KhuVuc" disabled ="true" value="<%- phong.KhuVuc %>">
+                        </div>
+                        <div class="input-group-text col-lg-3 mb-3">
+                            <span class="input-group-text"> Tầng:</span>
+                            <input type="text" class="form-control" name= "Tang" id="Tang" disabled ="true" value="<%- phong.Tang %>">
+                        </div>
+                        <div class="input-group-text col-lg-4 mb-3">
+                            <span class="input-group-text"> Tình trạng:</span>
+                            <input type="text" class="form-control" name= "TinhTrang" id="TinhTrang" disabled ="true" value="<%- _tt %>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-12 mb-3">
+                            <span class="input-group-text"> Mô tả:</span>
+                            <textarea rows="4" class="form-control" name= "MoTa" id="MoTa" disabled ="true" ><%= phong.MoTa %></textarea>
+                        </div>
+                    </div>                   
+                    
+                    <button type="button" class="btn btn-danger " href="/phong/update/<%- phong.PhongID%>" id="btn_Xoa" onclick="getConfirmation_Delete()">Xóa</button>
+                </form>
+                <br/>
+                    <a class="btn btn-primary" href="/phong" style="font-size: 100%;">Quay lại Danh mục Phòng</a>
+                <br/>
+                <br/>
+            </div>
+            
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+</div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>KhachHang_AddNew</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <% include header%>
+        </div>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h2 style="color: red;">Thêm Mới Khách Hàng</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <% include leftsidebar%>
+            </div>
+            <div class="col-lg-9">
+                <form class="grid" method="POST" action="/khcn/create">
+                    <div class="row">
+                        <div class="input-group-text col-lg-8 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text" >Tên Khách hàng:</span>
+                            <input type="text" class="form-control" name="CaNhanTen" id="CaNhanTen" placeholder="Họ và tên, vd: Nguyễn Văn A" required>                                
+                        </div>
+                        <div class="input-group-text col-lg-4 mb-3"style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text" id="inputGroup-text">Giới tính:</span>
+                            <select type="number" class="form-control" name="GioiTinh" id="GioiTinh">
+                                <option value="9">Chọn... </option>
+                                <option value="2">Khác</option>
+                                <option value="1">Nam</option>
+                                <option value="0">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-6 mb-3"style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Loại giấy tờ:</span>
+                            <select type="number" class="form-control" name="LoaiGTCNID" id="LoaiGTCNID">
+                                <option value="0">Chọn ...</option>
+                                <option value="1">Giấy CMND</option>
+                                <option value="2">Căn cước Công dân</option>
+                                <option value="3">Hộ chiếu</option>
+                                <option value="4">Giấy ĐKKD</option>
+                                <option value="5">QĐ Thành lập</option>
+                            </select>
+                        </div>
+                        <div class="input-group-text col-lg-6 mb-3"style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Giấy tờ số:</span>
+                            <input type="text" class="form-control" name="GiayToCNSo" id="GiayToCNSo" placeholder="Số của GTCN, vd: 0025123789" required>                                
+                        </div>
+                    </div>                    
+                    <div class="row">
+                        <div class="input-group-text col-lg-5 mb-3"style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Ngày sinh/thành lập:</span>
+                            <input type="date" class="form-control" name="NgaySinh" id="NgaySinh" placeholder="ngày: mm/dd/yyyy">
+                        </div>
+                        <div class="input-group-text col-lg-4 mb-3"style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Loại khách:</span>
+                            <select type="number" class="form-control" name="LoaiKhachID" id="LoaiKhachID" required>
+                                <option value="9">Chọn... </option>
+                                <option value="1">Khách trong nước</option>
+                                <option value="0">Khách nước ngoài</option>
+                            </select>
+                        </div>
+                        <div class="input-group-text col-lg-3 mb-3"style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Quốc tịch:</span>
+                            <input class="form-control" list="danhsachQuocTich" name="QuocTichId" id="QuocTichId"
+                                placeholder="Type to search...">
+                            <datalist id="danhsachQuocTich">
+                                <% for(let i=0; i<quoctich.length; i++){ %>
+                                    <option value="<%- quoctich[i].QuocTichID +'|'+quoctich[i].QuocTichCode+'|'+quoctich[i].QuocGia %>">
+                                        <%= quoctich[i].QuocTichCode %> -- <%= quoctich[i].QuocGia %>
+                                    </option>
+                                    <% } %>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-12 mb-3"style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Địa chỉ:</span>
+                            <input type="text" class="form-control" name="DiaChi" id="DiaChi"
+                                placeholder="địa chỉ: 79 Trần Hưng Đạo, P. Cô Giang, Quận 1, Việt Nam">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group-text col-lg-5 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Điện thoại:</span>
+                            <input type="text" class="form-control" name="DienThoai" id="DienThoai"
+                                placeholder="Số điện thoại">
+                        </div>
+                        <div class="input-group-text col-lg-7 mb-3" style="padding-left: 1px;padding-right: 1px;">
+                            <span class="input-group-text">Email:</span>
+                            <input type="email" class="form-control" name="Email" id="Email"
+                                placeholder="emailaddress@mailserver">
+                        </div>
+                    </div>
+                   
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-primary " type="submit"> LƯU DỮ LIỆU </button>
+                        <button class="btn btn-info " type="reset"> Reset </button>
+                    </div>
+                </form>
+                <br />
+                <a class="btn btn-success" href="/khcn" style="font-size: 100%;">Quay lại Danh sách khách hàng</a>
+                <br />
+                <br />
+            </div>
+
+        </div>
+        <div class="row">
+            <% include footer%>
+        </div>
+    </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
